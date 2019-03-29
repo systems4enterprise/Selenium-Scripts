@@ -1,4 +1,4 @@
-package org.gradle;
+package b0ardTesting;
 
 import static org.junit.Assert.*;
 

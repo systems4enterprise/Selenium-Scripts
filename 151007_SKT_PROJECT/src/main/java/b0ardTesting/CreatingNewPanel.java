@@ -24,6 +24,10 @@ public class CreatingNewPanel {
 		driver.findElement(By.id("Username")).sendKeys(CreatingUser.user_extern);
 		driver.findElement(By.id("Password")).clear();
 		driver.findElement(By.id("Password")).sendKeys(CreatingUser.password);
+		driver.findElement(By.id("Username")).clear();
+		driver.findElement(By.id("Username")).sendKeys(CreatingUser.user_extern);
+
+
 		driver.findElement(By.name("button")).click();
 		Thread.sleep(4000);
 		
@@ -32,7 +36,7 @@ public class CreatingNewPanel {
 	@Test
 	public void createPanel() throws InterruptedException{
 		
-		driver.findElement(By.linkText(CreatingUser.LastName)).click();;
+		driver.findElement(By.linkText(CreatingUser.LastName)).click();
 		System.out.println(CreatingUser.LastName + " has entered his newly created board");
 		Thread.sleep(5000);
 		

@@ -15,9 +15,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
+//import com.sun.org.apache.bcel.internal.generic.Select;
 
 import org.junit.Test;
 
@@ -46,6 +49,7 @@ public class TableView {
 	@Test
 	public void test() throws InterruptedException {
 		logIn();
+		WebDriverWait wait = new WebDriverWait(driver, 8000);
 		WebElement element  = driver.findElement(By.cssSelector("a.dropdown-toggle > span"));
 		assertEquals(CreatingUser.FirstName + " " + CreatingUser.LastName, element.getText());
 		
@@ -166,6 +170,13 @@ public class TableView {
 		String plata1 = element1.getText();
 		System.out.println(plata1);
 		
+		//close the ticket 
+		driver.findElement(By.cssSelector("#dropdownEditCardMenu")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector("#listEditCard > li:nth-child(1) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
+		
+		
 		driver.findElement(By.cssSelector("div.list-item-card-outer:nth-child(2) > div:nth-child(1)")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("li.kanban-board-list-group-item:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(2)")).clear();
@@ -194,10 +205,17 @@ public class TableView {
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector(".glyphicon-option-horizontal")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.cssSelector(".glyphicon-option-horizontal")).click();
+		
+		//close the ticket 
+		driver.findElement(By.cssSelector("#dropdownEditCardMenu")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("#listEditCard > li:nth-child(1) > a:nth-child(1)")).click();
 		Thread.sleep(2000);
+				
+//		driver.findElement(By.cssSelector(".glyphicon-option-horizontal")).click();
+//		Thread.sleep(2000);
+//		driver.findElement(By.cssSelector("#listEditCard > li:nth-child(1) > a:nth-child(1)")).click();
+//		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("#btnGridView")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("button.btn:nth-child(4)")).click();

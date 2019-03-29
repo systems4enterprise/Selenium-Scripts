@@ -1,4 +1,4 @@
-package org.gradle;
+package b0ardTesting;
 
 import static org.junit.Assert.*;
 
@@ -33,7 +33,6 @@ public class TicketsWithUpcomingDeadlineTest {
 	String boardName = "Board " + random;
 	String ticketType = "Ticket type " + random;
 	//Actions action = new Actions(driver);
-	
 	@Before
 	public void setUp() throws Exception {
 		driver = new FirefoxDriver();		
@@ -140,6 +139,8 @@ public class TicketsWithUpcomingDeadlineTest {
 		Thread.sleep(2000);
 		
 		//zadavanje deadline na ticket
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.spnDeadline")));
+
 		driver.findElement(By.cssSelector("span.spnDeadline")).click();
 		driver.findElement(By.name("deadlineDate")).clear();
 			//denesen datum

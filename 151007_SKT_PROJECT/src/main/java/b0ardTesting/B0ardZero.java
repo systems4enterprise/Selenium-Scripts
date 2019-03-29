@@ -15,9 +15,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
+//import com.sun.org.apache.bcel.internal.generic.Select;
 
 public class B0ardZero {
 	WebDriver driver;
@@ -46,6 +48,8 @@ public class B0ardZero {
 	@Test
 	public void test() throws InterruptedException{
 		logIn();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 8000);
 		WebElement element  = driver.findElement(By.cssSelector("a.dropdown-toggle > span"));
 		assertEquals(CreatingUser.FirstName + " " + CreatingUser.LastName, element.getText());
 		
@@ -97,7 +101,7 @@ public class B0ardZero {
 		driver.findElement(By.xpath("//*[@id="+id1+"]/div/div[1]/div/div[2]/button[1]")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@id="+id1+"]/div/div[1]/div/div[2]/span/div/button/span[1]")).click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		driver.findElement(By.xpath("//*[@id="+id1+"]/div/div[1]/div/div[2]/span/div/div/ul/li[2]/a/span[1]")).click();
 		Thread.sleep(2000);
 		
@@ -178,6 +182,9 @@ public class B0ardZero {
 		String b = ("Tiket" + (int)(Math.random()*12345));
 		String c = ("Tiket" + (int)(Math.random()*12345));
 		
+		Thread.sleep(6000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("span.glyphicon.glyphicon-plus")));		
+
 		driver.findElement(By.cssSelector("span.glyphicon.glyphicon-plus")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector(".dropup > div:nth-child(2) > ul:nth-child(2) > li:nth-child(2)")).click();
@@ -248,6 +255,8 @@ public class B0ardZero {
 		driver.findElement(By.cssSelector("div.navbar:nth-child(2) > ul:nth-child(2) > li:nth-child(2) > button:nth-child(1)")).click();
 		Thread.sleep(2000);
 		WebElement elementb  = driver.findElement(By.cssSelector(".col-md-10 > span:nth-child(2)"));
+		System.out.println("b" + b);
+		System.out.println("elementb.getText()" + elementb.getText());
 		assertEquals(b, elementb.getText());
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("#searchZeroTermHeader")).click();

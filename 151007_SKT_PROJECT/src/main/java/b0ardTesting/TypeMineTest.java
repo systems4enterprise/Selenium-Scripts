@@ -1,4 +1,4 @@
-package org.gradle;
+package b0ardTesting;
 
 import static org.junit.Assert.*;
 
@@ -91,7 +91,7 @@ public class TypeMineTest {
 		driver.findElement(By.xpath("//body/ul/li[5]")).click();		
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.privilegesCircle.context-menu-two")));
 		driver.findElement(By.xpath("//table[@id='privilegesTable']/tbody/tr[2]/td[2]/div")).click();
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//body/ul/li")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[5]/span")));
 		driver.findElement(By.xpath("//li[5]/span")).click();
 		Thread.sleep(2000);
 		

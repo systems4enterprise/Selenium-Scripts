@@ -19,7 +19,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CreatingUser {
 	
-	public static String base = "http://test.b0ard.work";
+//	public static String base = "http://test.b0ard.work";
+	public static String base = "http://admintest.b0ard.work";
 	public static String password = "123456";
 	public static String FirstName = "Selenium";
 	public static String LastName = "User"; //we append the random extension to the last name of the user 
@@ -37,11 +38,11 @@ public class CreatingUser {
 		driver.get(base);
 
 		driver.findElement(By.id("Username")).clear();
-		driver.findElement(By.id("Username")).sendKeys("Selenium");
+		driver.findElement(By.id("Username")).sendKeys("anes4e");
 		driver.findElement(By.id("Password")).clear();
 		driver.findElement(By.id("Password")).sendKeys("123456");
 		driver.findElement(By.name("button")).click();
-		Thread.sleep(2000);
+		Thread.sleep(8000);
 		
 		driver.findElement(By.cssSelector("a.details:nth-child(1) > i:nth-child(1)")).click();
 		Thread.sleep(1000);
@@ -70,14 +71,18 @@ public class CreatingUser {
 		driver.findElement(By.id("addLastName")).clear();
 		driver.findElement(By.id("addLastName")).sendKeys(LastName);
 		
-		
+		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("input.btn-success")).click();
+		//driver.findElement(By.cssSelector(".details")).click();
+		
 		
 		Thread.sleep(5000);
-		List<WebElement> list = driver.findElements(By.cssSelector(".table > tbody:nth-child(2) > tr"));
+		//List<WebElement> list = driver.findElements(By.cssSelector(".table > tbody:nth-child(2) > tr"));
+		List<WebElement> list = driver.findElements(By.cssSelector(".table > tbody > tr"));
+
+		
 		boolean present = false;
 		for(WebElement we : list){
-			
 			if(we.findElement(By.cssSelector("td:nth-child(3)")).getText().contains(sessionUser)){
 				present = true;
 				System.out.println(we.findElement(By.cssSelector("td:nth-child(3)")).getText());
@@ -88,7 +93,8 @@ public class CreatingUser {
 		assertTrue(present);
 		
 		driver.get(base);
-		driver.findElement(By.cssSelector("a.details:nth-child(2) > i:nth-child(1)")).click();
+		driver.findElement(By.cssSelector(".details")).click();
+		//driver.findElement(By.cssSelector("a.details:nth-child(2) > i:nth-child(1)")).click();
 		Thread.sleep(6000);
 		list = driver.findElements(By.cssSelector(".table > tbody:nth-child(2) > tr"));
 		for(WebElement we: list){
@@ -114,9 +120,12 @@ public class CreatingUser {
 		Thread.sleep(6000);
 		list = driver.findElements(By.cssSelector(".table > tbody:nth-child(2) > tr"));
 		present = false;
-		for(WebElement we : list){
-			
-			if(we.findElement(By.cssSelector("td:nth-child(2)")).getText().contains(sessionUser)){
+		
+		
+		for(WebElement we : list){			
+
+			if(we.findElement(By.cssSelector("td:nth-child(3)")).getText().contains(sessionUser)){
+				
 				present = true;
 				System.out.println(we.findElement(By.cssSelector("td:nth-child(2)")).getText() + " was added to Selenium User group");
 				break;

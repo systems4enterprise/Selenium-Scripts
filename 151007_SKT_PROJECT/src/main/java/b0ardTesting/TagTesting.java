@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.JavascriptExecutor;
 public class TagTesting {
 WebDriver driver;
@@ -109,6 +110,7 @@ WebDriver driver;
 		Thread.sleep(3000);
 		int k = 2;
 		
+		ExpectedConditions.elementToBeClickable(By.cssSelector("li.nav-item-submenu:nth-child(3)"));
 		driver.findElement(By.cssSelector("li.nav-item-submenu:nth-child(3)")).click();
 		//Thread.sleep(3000);
 		driver.findElement(By.linkText("Tags")).click();

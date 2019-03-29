@@ -1,9 +1,10 @@
 package b0ardTesting;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,9 +13,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import b0ardTesting.CreatingUser;
+
 
 public class TicketTesting {
 	WebDriver driver;
@@ -126,6 +134,8 @@ public class TicketTesting {
 	}
 	@Test
 	public void test() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 8000);
+
 		logIn();
 		createTicket();
 		//createBoard();	
@@ -133,9 +143,63 @@ public class TicketTesting {
 		Date date = new Date();
 		String date1= dateFormat.format(date);
 		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.list-item-card-outer:last-child")));
 		driver.findElement(By.cssSelector("div.list-item-card-outer:last-child")).click();
 		Thread.sleep(2000);
 		
+		//assign user
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#assignNewUser")));
+		driver.findElement(By.cssSelector("#assignNewUser")).click();
+			
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assignNewUser > span:nth-child(2) > div:nth-child(1) > button:nth-child(1)")));
+		driver.findElement(By.cssSelector("#assignNewUser > span:nth-child(2) > div:nth-child(1) > button:nth-child(1)")).click(); //assign user
+		Thread.sleep(2000);
+		
+		//assign watcher
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")));
+		driver.findElement(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click(); //click +
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assignNewWatcher > span:nth-child(1)")));
+		driver.findElement(By.cssSelector("#assignNewWatcher > span:nth-child(1)")).click(); //click the button
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assignNewWatcher > span:nth-child(2) > div:nth-child(1) > button:nth-child(1)")));
+		driver.findElement(By.cssSelector("#assignNewWatcher > span:nth-child(2) > div:nth-child(1) > button:nth-child(1)")).click(); //click the button for assigning
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")));
+		driver.findElement(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click(); //choose user
+		driver.findElement(By.cssSelector("#assignNewUser")).click(); //click assign user again, to save the change of assigning the watcher
+		Thread.sleep(2000);
+		
+		//assign deadline
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.spnDeadline")));
+		driver.findElement(By.cssSelector("span.spnDeadline")).click();
+		driver.findElement(By.name("deadlineDate")).clear();
+			//get today's date
+		java.util.Date today = Calendar.getInstance().getTime();		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat format2 = new SimpleDateFormat("dd/MM/yyyy");		
+		String deadline = format.format(today);
+		String deadline2 = format2.format(today);
+			//assign the date
+		driver.findElement(By.name("deadlineDate")).sendKeys(deadline2);
+		Thread.sleep(2000);
+		
+		//add a tag
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".ticketDetails-main > div:nth-child(2) > span:nth-child(2)")));
+		driver.findElement(By.cssSelector(".ticketDetails-main > div:nth-child(2) > span:nth-child(2)")).click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")));
+		driver.findElement(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
+		
+		//close the ticket
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#dropdownEditCardMenu")));
+		driver.findElement(By.cssSelector("#dropdownEditCardMenu")).click(); //dropdown for closing the ticket
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#listEditCard > li:nth-child(1) > a:nth-child(1)")));
+		driver.findElement(By.cssSelector("#listEditCard > li:nth-child(1) > a:nth-child(1)")).click(); //choose user
+		
+		
+		
+		//wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#spnShowUsers")));
+
+		/* Ace
 		driver.findElement(By.cssSelector("#spnShowUsers")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("#assignNewUser > span:nth-child(2) > div:nth-child(1)")).click();
@@ -248,6 +312,8 @@ public class TicketTesting {
 		Thread.sleep(5000);
 		driver.findElement(By.cssSelector(".btn-success")).click();
 		Thread.sleep(5000);
+		
+		*/
 		
 	}
 
