@@ -129,7 +129,7 @@ public class CreatingNewBoard {
 		driver.get(browserUrl);
 		Thread.sleep(5000);	
 		System.out.println("B0ard is deleted");
-		
+		System.out.println("Over");
 	}
 	
 	@After

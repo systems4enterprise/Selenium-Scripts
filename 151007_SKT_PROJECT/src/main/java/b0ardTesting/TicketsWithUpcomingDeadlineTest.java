@@ -139,6 +139,7 @@ public class TicketsWithUpcomingDeadlineTest {
 		Thread.sleep(2000);
 		
 		//zadavanje deadline na ticket
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.spnDeadline")));
 
 		driver.findElement(By.cssSelector("span.spnDeadline")).click();
@@ -229,7 +230,7 @@ public class TicketsWithUpcomingDeadlineTest {
 		driver.findElement(By.linkText("LogOut")).click();
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();		
 		
-		
+		System.out.println("Over");
 	
 		/*
 		//izbrisi go novokreiraniot board

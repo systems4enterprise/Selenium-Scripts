@@ -26,10 +26,10 @@ WebDriver driver;
 	
 	public void logIn() throws InterruptedException {
 		driver.get(LoggingIn.baseURL);
-		CreatingUser.user_extern = "Jana";
+		CreatingUser.user_extern = "ane123";
 		CreatingUser.password = "123456";
-		CreatingUser.FirstName = "Jana";
-		CreatingUser.LastName = "Andeva";
+		CreatingUser.FirstName = "Ane";
+		CreatingUser.LastName = "Kuzmanovska";
 		
 		driver.findElement(By.id("Username")).clear();
 		driver.findElement(By.id("Username")).sendKeys(CreatingUser.user_extern);
@@ -94,6 +94,7 @@ WebDriver driver;
 		if(listTicketTypes.size() > 1){
 			listTicketTypes.get(listTicketTypes.size() - 1).findElement(By.cssSelector("a")).click();
 			}
+		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("input.form-group")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("input.form-group")).sendKeys("Test" + (int)(Math.random()*12345));

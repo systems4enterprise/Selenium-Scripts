@@ -50,18 +50,61 @@ public class DeleteBoardsAndTickets {
 		for(int i=1; i< boardNumber.size() ; i++){
 			driver.findElement(By.cssSelector("#mCSB_2_container > li:nth-child(2) > a:nth-child(1)")).click(); //klikni na vtor bord
 			Thread.sleep(2000);
+			
+			//delete ticket from first column
 			try{
-				driver.findElement(By.cssSelector("div.list-item-card-outer:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)")).click();
-				Thread.sleep(2000);
-				driver.findElement(By.cssSelector("#deleteTicketModal > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > div:nth-child(3) > button:nth-child(2)")).click();
-				Thread.sleep(2000);
+				while(true){
+					driver.findElement(By.cssSelector("div.list-item-card-outer:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.cssSelector("#deleteTicketModal > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > div:nth-child(3) > button:nth-child(2)")).click();
+					Thread.sleep(2000);
+				}
+				
 				
 				
 			}
 			catch (Exception e) {
 				
 			}
-			Thread.sleep(2000);
+			
+			//delete ticket from second column
+			try{
+				while(true){
+					Thread.sleep(2000);
+					driver.findElement(By.cssSelector("#mCSB_2_container > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.cssSelector("#deleteTicketModal > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > div:nth-child(3) > button:nth-child(2)")).click();
+					Thread.sleep(2000);
+				}			
+					
+			}
+				
+			catch (Exception e) {
+				
+			}
+
+			
+			//delete first column
+			try{
+				for(int i1=0; i1<2;i1++){
+					Thread.sleep(2000);
+					driver.findElement(By.cssSelector("button.btn:nth-child(3)")).click();
+					Thread.sleep(2000);
+					driver.findElement(By.cssSelector("#deletePoolListModal > div:nth-child(1) > div:nth-child(1) > form:nth-child(1) > div:nth-child(3) > button:nth-child(2)")).click();
+					Thread.sleep(2000);
+				}
+			
+				
+				
+			}
+			catch (Exception e) {
+				
+			}
+					
+			
+			
+			//get back to home page and delete the board
+			Thread.sleep(4000);
 			driver.findElement(By.cssSelector("div.dropdown:nth-child(1) > a:nth-child(1)")).click();
 			Thread.sleep(2000);
 			driver.findElement(By.cssSelector("#mCSB_2_container > li:nth-child(2) > div:nth-child(2) > a:nth-child(1)")).click();
@@ -72,7 +115,11 @@ public class DeleteBoardsAndTickets {
 			Thread.sleep(2000);
 			
 			
+			
+			
 		}
+		
+		System.out.println("Over");
 		
 	}
 	

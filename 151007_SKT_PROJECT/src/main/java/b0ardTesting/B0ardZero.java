@@ -332,6 +332,8 @@ public class B0ardZero {
 		driver.findElement(By.cssSelector("h3")).click();
 		Thread.sleep(2000);
 		
+		System.out.println("Over");
+		
 	}
 
 }

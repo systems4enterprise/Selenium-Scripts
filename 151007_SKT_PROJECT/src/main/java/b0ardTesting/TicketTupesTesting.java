@@ -16,6 +16,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -117,12 +118,27 @@ WebDriver driver;
 		Date date = new Date();
 		String date1= dateFormat.format(date);
 		Thread.sleep(4000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li.nav-item-submenu:nth-child(3)")));
+		//odi vo priviledges
+				Actions actions = new Actions(driver);
+				WebElement menu = driver.findElement(By.cssSelector("#pageContentDiv > div.sidebar.sidebar-main > div > div > div > ul > li:nth-child(5) > a"));
+				actions.moveToElement(menu);
+				WebElement subMenu = driver.findElement(By.cssSelector("#pageContentDiv > div.sidebar.sidebar-main > div > div > div > ul > li:nth-child(5) > a"));
+				actions.moveToElement(subMenu);
+				actions.click().build().perform();
+				Thread.sleep(2000);
+				
+		//privilegija na korisnik
+	 driver.findElement(By.cssSelector("tbody.tableWidth > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)")).click();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//body/ul/li[4]")));		
+
+	 driver.findElement(By.xpath("//body/ul/li[2]")).click();
+	 Thread.sleep(2000);
+		//wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li.nav-item-submenu:nth-child(3)")));
 		driver.findElement(By.cssSelector("li.nav-item-submenu:nth-child(3)")).click();
 		Thread.sleep(4000);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='pageContentDiv']/div/div/div/div/ul/li[3]/ul/li[3]/a/span")));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='pageContentDiv']/div/div/div/div/ul/li[3]/ul/li[3]/a/span")));
 		Thread.sleep(8000);
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='pageContentDiv']/div/div/div/div/ul/li[3]/ul/li[1]/a/span")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='pageContentDiv']/div/div/div/div/ul/li[3]/ul/li[1]/a/span")));
 
 		driver.findElement(By.xpath("//div[@id='pageContentDiv']/div/div/div/div/ul/li[3]/ul/li[1]/a/span")).click();
 		
@@ -157,7 +173,7 @@ WebDriver driver;
 		driver.findElement(By.cssSelector("div.btn > span:nth-child(1)")).click();
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector(".dropup > div:nth-child(2) > ul:nth-child(2) > li:nth-child(2)")).click();
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 		driver.findElement(By.cssSelector("input.form-group")).click();
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input.form-group")));
@@ -175,12 +191,22 @@ WebDriver driver;
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("#bodyCardTypesTable > tr:nth-child(1) > td:nth-child(8) > button:nth-child(1)")).click();
 		Thread.sleep(4000);
-		driver.findElement(By.cssSelector("button.btn-sm:nth-child(2)")).click();
+		
+		
+		driver.findElement(By.cssSelector("#bodyCardTypesTable > tr:nth-child(1) > td:nth-child(5) > button:nth-child(1)")).click();
 		Thread.sleep(4000);
+		//dodadi privilegija edit na ticket type
+		driver.findElement(By.cssSelector("tbody.tableWidth > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)")).click();
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//body/ul/li[4]")));
+		driver.findElement(By.xpath("//body/ul/li[4]")).click();
+		Thread.sleep(2000);
+		
+		
 		driver.findElement(By.cssSelector("#kanbanTab")).click();
 		Thread.sleep(4000);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li.nav-item:last-child")));
-
+//tbody.tableWidth > tr:nth-child(1) > td:nth-child(2) > div:nth-child(1)
 		driver.findElement(By.cssSelector("li.nav-item:last-child")).click();
 		Thread.sleep(4000);
 		String browserUrl = driver.getCurrentUrl();
@@ -195,6 +221,10 @@ WebDriver driver;
 		driver.findElement(By.cssSelector(".btn-default")).click();
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("#bodyCardTypesTable > tr:nth-child(1) > td:nth-child(8) > button:nth-child(1)")).click();
+		Thread.sleep(6000);
+	
+		//driver.findElement(By.cssSelector("button.btn:nth-child(2)")).click();
+		driver.findElement(By.cssSelector("#bodyCardTypesTable > tr:nth-child(1) > td:nth-child(9) > button:nth-child(1)")).click();
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("button.btn:nth-child(2)")).click();
 		Thread.sleep(4000);
@@ -237,15 +267,16 @@ WebDriver driver;
 		driver.findElement(By.cssSelector(".dropup > div:nth-child(2) > ul:nth-child(2) > li:nth-child(2)")).click();
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("input.form-group")).click();
-		Thread.sleep(3000);
+		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("input.form-group")).sendKeys("Test" + (int)(Math.random()*12345));
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector("h3")).click();
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector("div.list-item-card-outer:last-child")).click();
 		Thread.sleep(6000);
-		
+
 		driver.findElement(By.cssSelector("li.kanban-board-list-group-item:nth-child(1) > div:nth-child(1) > div:nth-child(2) > textarea:nth-child(2)")).sendKeys(Keys.RETURN);
+
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector("li.kanban-board-list-group-item:nth-child(1) > div:nth-child(1) > div:nth-child(2) > textarea:nth-child(2)")).sendKeys("Tekst1");
 		driver.findElement(By.cssSelector("li.kanban-board-list-group-item:nth-child(3) > div:nth-child(1) > div:nth-child(2) > textarea:nth-child(2)")).click();
@@ -339,7 +370,7 @@ WebDriver driver;
 		List <WebElement> numericInputElement = driver.findElements(By.cssSelector("li.kanban-board-list-group-item:nth-child(2) > div:nth-child(1) > div:nth-child(2) > span:nth-child(1)"));
 		System.out.println("numericInputElement size: " + numericInputElement.size());
 		
-		
+		System.out.println("Over");
 		
 	}
 

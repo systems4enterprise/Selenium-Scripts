@@ -207,7 +207,9 @@ public class TypeMineTest {
 		driver.findElement(By.cssSelector("b.caret")).click();
 		driver.findElement(By.linkText("LogOut")).click();
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
-		Thread.sleep(2000);		
+		Thread.sleep(2000);	
+		
+		System.out.println("Over");
 		
 	}
 	

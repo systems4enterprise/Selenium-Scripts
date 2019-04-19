@@ -133,6 +133,7 @@ public class CreatingUser {
 		}
 		
 		assertTrue(present);
+		System.out.println("Over");
 		
 	}
 	

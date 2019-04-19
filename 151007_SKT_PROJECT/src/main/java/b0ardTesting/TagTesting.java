@@ -242,7 +242,7 @@ WebDriver driver;
 		driver.findElement(By.cssSelector(".btn-success")).click();
 		Thread.sleep(5000);
 		System.out.println("B0ard is deleted");	
-		
+		System.out.println("Over");
 	}
 	@After
 	public void dispose(){

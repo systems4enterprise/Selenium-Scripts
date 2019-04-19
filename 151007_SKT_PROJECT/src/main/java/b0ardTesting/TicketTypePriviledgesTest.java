@@ -369,7 +369,7 @@ public class TicketTypePriviledgesTest {
 		driver.findElement(By.cssSelector("b.caret")).click();
 		driver.findElement(By.linkText("LogOut")).click();
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
-
+		System.out.println("Over");
 		
 	}
 	

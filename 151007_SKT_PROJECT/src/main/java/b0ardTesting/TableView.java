@@ -126,6 +126,8 @@ public class TableView {
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("li.nav-item:last-child")).click();
 		Thread.sleep(2000);
+		//driver.findElement(By.cssSelector("div.dropdown:nth-child(1) > a:nth-child(1)")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.cssSelector(".list-item-add-placeholder > span:nth-child(1)")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("#txtNewBoardListName")).clear();
@@ -239,6 +241,8 @@ public class TableView {
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("h3")).click();
 		Thread.sleep(2000);
+		
+		System.out.println("Over");
 	}
 
 }

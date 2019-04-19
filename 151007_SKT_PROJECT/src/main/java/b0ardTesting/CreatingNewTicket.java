@@ -197,7 +197,8 @@ public class CreatingNewTicket {
 		
 		//nazad na noviot bord
 		driver.get(baseURL);
-		Thread.sleep(2000);	
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(boardName)));
+	
 		driver.findElement(By.linkText(boardName)).click();			
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("span.list-item-add-placeholder.add-board-list-span")));		
 		
@@ -226,7 +227,7 @@ public class CreatingNewTicket {
 		Thread.sleep(2000);
 		
 		//otvori tiket
-		driver.findElement(By.cssSelector("div.list-item-card-outer:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)")).click();
+		driver.findElement(By.cssSelector("div.row:nth-child(3)")).click();
 		Thread.sleep(2000);
 		
 		//zapisi vo checklist
@@ -260,28 +261,25 @@ public class CreatingNewTicket {
 		//tagni user vo komentar
 		driver.findElement(By.xpath("//*[@id='divTicketBody']/div/ul/li[3]/a")).sendKeys(Keys.RETURN);
 		driver.findElement(By.id("kanban-board-comment-field")).clear();
-		driver.findElement(By.id("kanban-board-comment-field")).sendKeys("@");
-		Thread.sleep(2 (By.cssSelector(".cur")).click();
+		driver.findElement(By.id("kanban-board-comment-field")).sendKeys("@");		
 		Thread.sleep(2000);
+		driver.findElement(By.cssSelector("#at-view-64 > ul:nth-child(2) > li:nth-child(1)")).click();
 		driver.findElement(By.id("comment")).click();
 		Thread.sleep(2000);
 		
-		//tagni tiket vo komentar
-		driver.findElement(By.xpath("//*[@id='divTicketBody']/div/ul/li[3]/a")).sendKeys(Keys.RETURN);
+		//tagni tiket
 		driver.findElement(By.id("kanban-board-comment-field")).clear();
 		driver.findElement(By.id("kanban-board-comment-field")).sendKeys("#");
-		Thread.sleep(8000);
-		List <WebElement> ticketList = driver.findElements(By.tagName("li"));
-		System.out.println(ticketList.get(0).getText());
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".li.cur:nth-child(2)")));
-
-		driver.findElement(By.cssSelector(".li.cur:nth-child(2)")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.cssSelector("#at-view-35 > ul > li:nth-child(1)")).click();
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("comment")));		
 		driver.findElement(By.id("comment")).click();
-		Thread.sleep(2000);
+
 		
 		//zadavanje deadline na ticket
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span.spnDeadline")));
+		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("span.spnDeadline")).click();
 		driver.findElement(By.name("deadlineDate")).clear();
 			//denesen datum
@@ -296,8 +294,7 @@ public class CreatingNewTicket {
 		
 		//assign user
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#assignNewUser")));
-		driver.findElement(By.cssSelector("#assignNewUser")).click();
-			
+		driver.findElement(By.cssSelector("#assignNewUser")).click();			
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#assignNewUser > span:nth-child(2) > div:nth-child(1) > button:nth-child(1)")));
 		driver.findElement(By.cssSelector("#assignNewUser > span:nth-child(2) > div:nth-child(1) > button:nth-child(1)")).click(); //assign user
 		Thread.sleep(2000);
@@ -314,9 +311,7 @@ public class CreatingNewTicket {
 		driver.findElement(By.cssSelector("div.open:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click(); //choose user
 		driver.findElement(By.cssSelector("#assignNewUser")).click(); //click assign user again, to save the change of assigning the watcher
 		Thread.sleep(2000);
-		
-		
-		
+				
 		//close the ticket
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#dropdownEditCardMenu")));
@@ -330,8 +325,9 @@ public class CreatingNewTicket {
 		driver.findElement(By.cssSelector("b.caret")).click();
 		driver.findElement(By.linkText("LogOut")).click();
 		driver.findElement(By.cssSelector("button.btn.btn-primary")).click();
-
-	
+		
+		System.out.println("Over");
+		
 	}
 	
 	@After

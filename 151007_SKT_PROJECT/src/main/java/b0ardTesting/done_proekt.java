@@ -48,7 +48,7 @@ public class done_proekt {
 	        driver.findElement(By.id("pwd")).sendKeys(password);
 	       
 	        driver.findElement(By.id("signin_submit")).click();
-	       
+	        System.out.println("Logged in");
 	        Thread.sleep(2000);
 	       
 	        //checking if user is successfully logged in
@@ -113,9 +113,12 @@ public class done_proekt {
 	   
 	    public void openingSentEmails() throws InterruptedException{
 	    	driver.findElement(By.cssSelector(".SC_mclst > div:nth-child(1) > div:nth-child(5)")).click();
-	    	 Thread.sleep(3000);
-	    	 assertEquals(driver.findElement(By.cssSelector(".colour")).getText(),"Sent using Zoho Mail");
-	    	 System.out.println("Email message " + driver.findElement(By.cssSelector(".colour")).getText());
+	    	 Thread.sleep(6000);
+	    	 WebElement zohoMailText = driver.findElement(By.cssSelector(".jsConTent > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > p:nth-child(1) > span:nth-child(1)"));
+	    	 System.out.println(zohoMailText.getText());
+	    	 //p::first-line	Selects the first line of every <p> element
+	    	 assertEquals(zohoMailText.getText(),"Sent using Zoho Mail");
+	    
 	    }
 	   
 	   

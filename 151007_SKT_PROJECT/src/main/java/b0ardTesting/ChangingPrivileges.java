@@ -123,7 +123,7 @@ public class ChangingPrivileges {
 		
 		assertTrue(bgColor.equals("rgba(67, 160, 71, 1)"));
 		System.out.println(CreatingUser.user_extern + " has successfully added editing privileges to his newly created ticket type: " + CreatingNewTicket.newTicketType);
-
+		System.out.println("Over");
 	}
 	
 	@After
